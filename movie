@@ -82,3 +82,50 @@ void displayseats() {
         p = p -> next;
     }
 }
+// Main function
+int main() {
+    int numseats, choice, seatnumber;
+    char name[100];
+
+    printf("Enter the number of seats in the theatre: ");
+    scanf("%d", &numseats);
+
+    for (int i = 1; i <= numseats; i++) {
+        addseat(i);
+    }
+
+    do {
+        printf("\nTheatre Seat Booking\n");
+        printf("1. Book Seat\n");
+        printf("2. Unbook Seat\n");
+        printf("3. Display Seats\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+        case 1:
+            printf("Enter the seat number to book: ");
+            scanf("%d", &seatnumber);
+            printf("Enter the name of the person booking the seat: ");
+            scanf("%s", name);
+            bookseat(seatnumber, name);
+            break;
+        case 2:
+            printf("Enter the seat number to unbook: ");
+            scanf("%d", &seatnumber);
+            unbookseat(seatnumber);
+            break;
+        case 3:
+            displayseats();
+            break;
+        case 4:
+            printf("Exiting the program.\n");
+            break;
+        default:
+            printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
