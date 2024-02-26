@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// Creating a double linked node 
+struct node {
+    int seatnumber;
+    char name[100];
+    struct node* prev;
+    struct node* next;
+};
+
+// Now, let's implement a basic function to book seats
+struct node* head = NULL;
+
+void addseat(int seatnumber) {
+    struct node* newnode = (struct node*)malloc(sizeof(struct node));
+    if (newnode == NULL) {
+        printf("Memory allocation failed.\n");
+        exit(1);
+    }
+    
