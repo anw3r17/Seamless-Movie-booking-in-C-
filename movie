@@ -11,11 +11,22 @@ struct node {
 
 // Now, let's implement a basic function to book seats
 struct node* head = NULL;
-
+// intialize the head to point to NULL
 void addseat(int seatnumber) {
     struct node* newnode = (struct node*)malloc(sizeof(struct node));
     if (newnode == NULL) {
         printf("Memory allocation failed.\n");
         exit(1);
     }
+    newnode -> seatnumber = seatnumber;
+    newnode -> name[0] = '\0';
+    newnode -> prev = NULL;
+    newnode -> next = head;
+
+    if (head != NULL) {
+        head -> prev = newnode;
+    }
+
+    head = newnode;
+}
     
