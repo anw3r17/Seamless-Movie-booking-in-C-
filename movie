@@ -10,10 +10,10 @@ struct node {
 };
 
 // Now, let's implement a basic function to book seats
-struct node* head = NULL;
+struct node *head = NULL;
 // intialize the head to point to NULL
 void addseat(int seatnumber) {
-    struct node* newnode = (struct node*)malloc(sizeof(struct node));
+    struct node *newnode = (struct node*)malloc(sizeof(struct node));
     if (newnode == NULL) {
         printf("Memory allocation failed.\n");
         exit(1);
@@ -29,4 +29,23 @@ void addseat(int seatnumber) {
 
     head = newnode;
 }
-    
+
+// Now, let's implement a function which will allow us to reserve/book a seat    
+void bookseat(int seatnumber, const char* name) {
+    struct node *p = head;
+    while (p != NULL) {
+        if (p -> seatnumber == seatnumber) {
+            if (p -> name[0] != '\0') {
+                printf("Seat %d is already booked by %s.\n", seatnumber, p -> name);
+            } else {
+                strncpy(p->name, name, sizeof(p -> name) - 1);
+                p -> name[sizeof(p->name) - 1] = '\0';
+                printf("Seat %d booked successfully by %s.\n", seatnumber, name);
+            }
+            return;
+        }
+        p = p -> next;
+    }
+
+    printf("Seat %d not found in the Theatre.\n", seatnumber);
+}
