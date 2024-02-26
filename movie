@@ -68,3 +68,17 @@ void unbookseat(int seatnumber) {
 
     printf("Seat %d not found in the theatre.\n", seatnumber);
 }
+
+// Now, let's implement a function which will display the current information of seats
+void displayseats() {
+    struct node *p = head;
+    printf("Theatre Seat Status:\n");
+    while (p != NULL) {
+        if (p -> name[0] != '\0') {
+            printf("Seat %d: Booked - %s\n", p -> seatnumber, p -> name);
+        } else {
+            printf("Seat %d: Available\n", p -> seatnumber);
+        }
+        p = p -> next;
+    }
+}
