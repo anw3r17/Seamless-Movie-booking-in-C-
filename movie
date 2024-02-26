@@ -31,7 +31,7 @@ void addseat(int seatnumber) {
 }
 
 // Now, let's implement a function which will allow us to reserve/book a seat    
-void bookseat(int seatnumber, const char* name) {
+void bookseat(int seatnumber, const char *name) {
     struct node *p = head;
     while (p != NULL) {
         if (p -> seatnumber == seatnumber) {
@@ -48,4 +48,23 @@ void bookseat(int seatnumber, const char* name) {
     }
 
     printf("Seat %d not found in the Theatre.\n", seatnumber);
+}
+
+// Now, let's implement a function which will allow us to cancel/unbook a seat reservation.
+void unbookseat(int seatnumber) {
+    struct node *p = head;
+    while (p != NULL) {
+        if (p -> seatnumber == seatnumber) {
+            if (p -> name[0] != '\0') {
+                p -> name[0] = '\0';
+                printf("Seat %d unbooked successfully.\n", seatnumber);
+            } else {
+                printf("Seat %d is not booked.\n", seatnumber);
+            }
+            return;
+        }
+        p = p -> next;
+    }
+
+    printf("Seat %d not found in the theatre.\n", seatnumber);
 }
